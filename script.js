@@ -29,8 +29,7 @@ function sortStringAlphabetically() {
   
     // Getting the user's input
     const inputString = inputElement.value;
-  
-    // Sorting the input string alphabetically
+
     const sortedString = inputString.split('').sort().join('');
   
     // Displaying the sorted string
@@ -215,4 +214,95 @@ function letterCount() {
   
   const countButton = document.getElementById("countButton");
   countButton.addEventListener("click", letterCount);
+
+
+
+
+// Checking if at least one of the values is in the range of 50-99
+document.getElementById("valueCheckButton").addEventListener("click", function () {
+  const value1 = document.getElementById("value1").value;
+  const value2 = document.getElementById("value2").value;
+
+  // Checking in either of them falls within the range
+  const isInRange = (value1 >= 50 && value1 <= 99) || (value2 >= 50 && value2 <= 99);
+
+  if (isInRange) {
+    document.getElementById("valueCheckResult").textContent = "True";
+  } else {
+    document.getElementById("valueCheckResult").textContent = "False";
+  }
+})
+
+
+
+
+// Checking if letter exists between 2nd and 4th positions in a given string
+document.getElementById("checkLetter").addEventListener("click", function () {
+  const string = document.getElementById("givenString").value;
+  const letter = document.getElementById("letterBetween2And4").value;
+
+  if (string[1] === letter || string[2] === letter || string[3] === letter) {
+    document.getElementById("checkLetterResult").textContent = "True";
+  } else {
+    document.getElementById("checkLetterResult").textContent = "False";
+  }
+})
+
+
+
+
+// Finding the largest value between the first and last elements and setting all the other elements to that value
+document.getElementById('updateButton').addEventListener('click', function () {
+  const inputArray = document.getElementById('inputArray').value.split(',').map(Number);
+  
+  const largest = Math.max(inputArray[0], inputArray[inputArray.length - 1]);
+
+  for (let i = 0; i < inputArray.length; i++) {
+      inputArray[i] = largest;
+  }
+
+  document.getElementById('updatedArray').textContent = inputArray.join(', ');
+})
+
+
+
+
+// Replacing each character in a given string with the next in the English alphabet
+document.getElementById('replaceButton').addEventListener('click', function () {
+  const inputString = document.getElementById('replaceString').value;
+
+  // Create an array representing the English alphabet in both lowercase and uppercase.
+  const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  // Map each character in the input string to the next character in the alphabet.
+  const updatedString = inputString.replace(/[a-zA-Z]/g, function (char) {
+      const currentIndex = alphabet.indexOf(char);
+      const nextIndex = (currentIndex + 1) % alphabet.length;
+      return alphabet[nextIndex];
+  });
+
+  document.getElementById('updatedString').textContent = updatedString;
+})
+
+
+
+
+// Sorting array of strings in order of increasing length
+document.getElementById('sortArrayButton').addEventListener('click', function () {
+  const stringArray = document.getElementById('arrayString').value.split(',').map(str => str.trim());
+
+  // Sorting function to sort strings by length and preserve the order for equal-length strings
+  stringArray.sort(function (a, b) {
+    return a.length - b.length;
+
+  });
+
+  const sortedStrings = stringArray.join(', ');
+  document.getElementById('sortedStrings').textContent = sortedStrings;
+});
+
+
+
+
+
   
